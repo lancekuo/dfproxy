@@ -13,6 +13,8 @@ services:
         ports:
             - "80:80"
             - "443:443"
+        volumes:
+            - app-certs:/mnt
         deploy:
             placement:
                 constraints:
@@ -38,3 +40,11 @@ networks:
   app-network:
     external: true
     name: app-network
+
+volumes:
+  app-certs:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=${NFS_CERTS_ADDR}
+      device: ${NFS_CERTS_DIR}
