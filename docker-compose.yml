@@ -12,8 +12,9 @@ services:
             - monitor-network
             - app-network
         ports:
-            - "80:80"
-            - "443:443"
+            - 80:80
+            - 443:443
+            - 8080:8080
         volumes:
             - certs:/certs/
         deploy:

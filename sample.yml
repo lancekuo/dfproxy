@@ -1,0 +1,31 @@
+version: '3.5'
+
+services:
+
+  main:
+    image: vfarcic/go-demo
+    environment:
+      - DB=db
+    networks:
+      - app-network
+    deploy:
+      replicas: 3
+      labels:
+        - com.df.notify=true
+        - com.df.httpsOnly=true
+        - com.df.serviceDomain=api.lancekuo.com,staging.lancekuo.com
+        - com.df.servicePath=/something
+        - com.df.reqPathSearchReplace=/something/,/demo/
+        - com.df.port=8080
+#        - com.df.usersPassEncrypted=true
+#        - com.df.users=admin:$6$F2eJJA.G$BfoxX38MoNS10tywEzQZVDZOAjJn9wyTZJecYg.CymjwE8Rgm7xJn0KG3faT36GZbOtrsu4ba.vhsnHrPCNAa0
+
+  db:
+    image: mongo
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true 
+    name: app-network
