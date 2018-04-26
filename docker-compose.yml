@@ -48,5 +48,5 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      o: addr=${NFS_CERTS_ADDR}
-      device: ${NFS_CERTS_DIR}
+      o: addr=${CERTS_STORAGE_HOST}
+      device: ${CERTS_VOLUME}/letsencrypt/haproxy
