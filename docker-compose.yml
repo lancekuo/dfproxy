@@ -1,7 +1,7 @@
 version: '3.5'
 services:
     proxy:
-        image: dockerflow/docker-flow-proxy:18.04.16-36-linux-amd64
+        image: dockerflow/docker-flow-proxy:18.05.06-44-linux-amd64
         environment:
           - LISTENER_ADDRESS=swarm-listener
           - MODE=swarm
