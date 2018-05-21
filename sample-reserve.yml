@@ -1,0 +1,31 @@
+services:
+  proxy:
+    image: dockerflow/docker-flow-proxy
+    environment:
+      - DEBUG=true
+  emqtt-master:
+    deploy:
+      labels:
+        ...
+        - com.df.reqMode.2=tcp
+        - com.df.serviceGroup.2=emqtt-group
+        - com.df.checkTcp.2=true
+        - com.df.port.2=1883
+        - com.df.srcPort.2=1883
+        - com.df.balanceGroup.2=leastconn
+        - com.df.timeoutServer.2=10800
+        - com.df.timeoutClient.2=10800
+        - com.df.clitcpka.2=true
+  emqtt-worker:
+    deploy:
+      labels:
+        ...
+        - com.df.reqMode.1=tcp
+        - com.df.serviceGroup.1=emqtt-group
+        - com.df.tcpCheck.1=true
+        - com.df.port.1=1883
+        - com.df.srcPort.1=1883
+        - com.df.balanceGroup.1=leastconn
+        - com.df.timeoutServer.1=10800
+        - com.df.timeoutClient.1=10800
+        - com.df.clitcpka.1=true
